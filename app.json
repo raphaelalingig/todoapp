@@ -1,6 +1,6 @@
 {
   "expo": {
-    "name": "todoapp",
+    "name": "To-do List",
     "slug": "todoapp",
     "version": "1.0.0",
     "orientation": "portrait",
@@ -21,10 +21,16 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "package": "com.raizuu.todoapp"
     },
     "web": {
       "favicon": "./assets/favicon.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "e46191a6-4af2-4071-aa9b-408e59d221eb"
+      }
     }
   }
 }
