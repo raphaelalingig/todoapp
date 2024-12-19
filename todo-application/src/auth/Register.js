@@ -14,8 +14,9 @@ export default function Register() {
 
   const handleRegister = async (e) => {
     e.preventDefault();
-    if (password == confirmPassword) {
-      return alert("Password does not match");
+
+    if (password !== confirmPassword) {
+      return alert("Passwords do not match");
     }
 
     try {
@@ -29,7 +30,10 @@ export default function Register() {
       if (response.status === 200) {
         navigate("/dashboard");
       }
-    } catch (error) {}
+    } catch (error) {
+      console.error(error);
+      alert("An error occurred during registration. Please try again.");
+    }
   };
 
   return (
@@ -40,11 +44,11 @@ export default function Register() {
       <div className="bg-gray-50 dark:bg-gray-900 h-screen">
         <div className="px-24">
           <form onSubmit={handleRegister}>
-            <div class="grid gap-6 mb-6 md:grid-cols-2">
+            <div className="grid gap-6 mb-6 md:grid-cols-2">
               <div>
                 <label
-                  for="first_name"
-                  class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                  htmlFor="first_name"
+                  className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
                 >
                   First name
                 </label>
@@ -53,15 +57,15 @@ export default function Register() {
                   id="first_name"
                   value={firstName}
                   onChange={(e) => setFirstName(e.target.value)}
-                  class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                  className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                   placeholder="John"
                   required
                 />
               </div>
               <div>
                 <label
-                  for="last_name"
-                  class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                  htmlFor="last_name"
+                  className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
                 >
                   Last name
                 </label>
@@ -70,16 +74,16 @@ export default function Register() {
                   id="last_name"
                   value={lastName}
                   onChange={(e) => setLastName(e.target.value)}
-                  class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                  className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                   placeholder="Doe"
                   required
                 />
               </div>
             </div>
-            <div class="mb-6">
+            <div className="mb-6">
               <label
-                for="email"
-                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                htmlFor="email"
+                className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
               >
                 Email address
               </label>
@@ -88,15 +92,15 @@ export default function Register() {
                 id="email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 placeholder="john.doe@company.com"
                 required
               />
             </div>
-            <div class="mb-6">
+            <div className="mb-6">
               <label
-                for="password"
-                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                htmlFor="password"
+                className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
               >
                 Password
               </label>
@@ -105,15 +109,15 @@ export default function Register() {
                 id="password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 placeholder="•••••••••"
                 required
               />
             </div>
-            <div class="mb-6">
+            <div className="mb-6">
               <label
-                for="confirm_password"
-                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                htmlFor="confirm_password"
+                className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
               >
                 Confirm password
               </label>
@@ -122,27 +126,27 @@ export default function Register() {
                 id="confirm_password"
                 value={confirmPassword}
                 onChange={(e) => setConfirmpassword(e.target.value)}
-                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 placeholder="•••••••••"
                 required
               />
             </div>
-            <div class="flex items-start mb-6">
-              <div class="flex items-center h-5">
+            <div className="flex items-start mb-6">
+              <div className="flex items-center h-5">
                 <input
                   id="remember"
                   type="checkbox"
                   value=""
-                  class="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-blue-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-blue-600 dark:ring-offset-gray-800"
+                  className="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-blue-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-blue-600 dark:ring-offset-gray-800"
                   required
                 />
               </div>
               <label
-                for="remember"
-                class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300"
+                htmlFor="remember"
+                className="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300"
               >
                 I agree with the{" "}
-                <a class="text-blue-600 hover:underline dark:text-blue-500">
+                <a className="text-blue-600 hover:underline dark:text-blue-500">
                   terms and conditions
                 </a>
                 .
@@ -150,7 +154,7 @@ export default function Register() {
             </div>
             <button
               type="submit"
-              class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+              className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
             >
               Submit
             </button>
